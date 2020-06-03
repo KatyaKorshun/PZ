@@ -1,0 +1,10 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <br><br><br>
+    <p>Поздравляем {{ user.username }}, ваш аккаунт активирован</p>
+
+    <a class="btn btn-primary" href="{{ path('login') }}">Вход</a>
+{% endblock fos_user_content %}

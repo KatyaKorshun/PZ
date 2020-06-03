@@ -1,0 +1,85 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}Проверка компании{% endblock %}
+
+{% block body %}
+    <h1>Проверка компании</h1>
+    <br>
+    <a href="{{ path('user_homepage') }}">Посмотреть формулы</a>
+    <div class="col-md-4 text-center align-content-center">
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.risk) }}
+            {{ form_widget(form.risk) }}
+        </div>
+        <div class="form-group market_risk">
+            {{ form_label(form.volatility) }}
+            {{ form_widget(form.volatility) }}
+        </div>
+        <div class="form-group market_risk">
+            {{ form_label(form.quantile) }}
+            {{ form_widget(form.quantile) }}
+        </div>
+        <div class="form-group market_risk">
+            {{ form_label(form.openPositionValue) }}
+            {{ form_widget(form.openPositionValue) }}
+        </div>
+        <div class="form-group liquidity_risk">
+            {{ form_label(form.k1) }}
+            {{ form_widget(form.k1) }}
+        </div>
+        <div class="form-group liquidity_risk">
+            {{ form_label(form.k2) }}
+            {{ form_widget(form.k2) }}
+        </div>
+        <div class="form-group liquidity_risk">
+            {{ form_label(form.k3) }}
+            {{ form_widget(form.k3) }}
+        </div>
+        <div class="form-group liquidity_risk">
+            {{ form_label(form.k4) }}
+            {{ form_widget(form.k4) }}
+        </div>
+        <div class="form-group response-block">
+            {{ form_label(form.response) }}
+            {{ form_widget(form.response) }}
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary">Проверить</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+    <script src='https://code.jquery.com/jquery-latest.js'></script>
+
+    <script>
+        updateCampaignType(false);
+
+        $("#campaign_risk_risk").change(function () {
+            updateCampaignType(true);
+        });
+
+        function updateCampaignType(isChange) {
+            if (isChange) {
+                document.querySelector('.response').innerHTML = "";
+                document.querySelector('.response').setAttribute('rows', 2);
+            }
+
+            var risk = document.getElementById('campaign_risk_risk').value;
+
+            var options = document.getElementById('campaign_risk_risk').options;
+
+            for (var i = 0; i < options.length; ++i) {
+                if (options[i].value !== risk) {
+                    document.querySelectorAll(`.${options[i].value}`).forEach(function (e) {
+                        e.style.display = 'none';
+                    });
+                } else {
+                    document.querySelectorAll(`.${options[i].value}`).forEach(function (e) {
+                        e.style.display = 'block';
+                    });
+                }
+            }
+        }
+    </script>
+{% endblock %}

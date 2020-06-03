@@ -1,0 +1,10 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Редактировать Организационно-прававую форму{% endblock %}
+
+{% block body %}
+    <h1>Редактировать Организационно-прававую форму</h1>
+    <a class="btn btn-primary" href="{{ path('company_type_index') }}">Назад</a>
+
+    {{ include('admin/company_type/_form.html.twig', {'button_label': 'Обновить'}) }}
+{% endblock %}

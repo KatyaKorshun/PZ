@@ -1,0 +1,17 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}Главная{% endblock %}
+{% block body %}
+    <h1 style="text-align: center">Добро пожаловать на наш сайт {{ app.user.username }}!</h1>
+    <div>
+        <img src="{{ asset('images/risks.png') }}" alt="" style="margin: 0 auto; display: block">
+    </div>
+    <div>
+        <p style="text-align: center">Формула риска ликвидации:</p>
+        <img src="{{ asset('images/likvid.png') }}" alt="" style="margin: 0 auto; display: block">
+    </div>
+    <div>
+        <p style="text-align: center">Формула волютного риска:</p>
+        <img src="{{ asset('images/marketRisk.png') }}" alt="" style="margin: 0 auto; display: block">
+    </div>
+{% endblock %}

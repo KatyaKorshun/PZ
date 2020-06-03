@@ -1,0 +1,10 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}Редактировать компанию{% endblock %}
+
+{% block body %}
+    <h1>Редактировать компанию</h1>
+    <a class="btn btn-primary" href="{{ path('my_campaign_index') }}">Назад</a>
+
+    {% include 'user/campaign/_form.html.twig' with {'button_label': 'Обновить'} %}
+{% endblock %}

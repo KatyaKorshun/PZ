@@ -1,0 +1,35 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Отрасли{% endblock %}
+
+{% block body %}
+    <h1>Отрасли</h1>
+    <br>
+    <a class="btn btn-primary" href="{{ path('industry_new') }}">Создать отрасли</a>
+    <br><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Название</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for industry in industries %}
+            <tr>
+                <td>{{ industry.id }}</td>
+                <td>{{ industry.name }}</td>
+                <td class="float-left">
+                    <a class="btn btn-primary" href="{{ path('industry_edit', {'id': industry.id}) }}" style="float: left"><i class="fas fa-edit"></i></a>
+                    {% include('admin/industry/_delete_form.html.twig') %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Нет записей</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

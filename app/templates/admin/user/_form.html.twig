@@ -1,0 +1,59 @@
+{{ form_start(form) }}
+<br>
+
+{% if isError|default(null) %}
+    <div class="alert alert-danger" role="alert">
+        {{ form_errors(form) }}
+    </div>
+{% endif %}
+<br>
+<div class="form-group row">
+    <div class="col-md-1">
+        {{ form_label(form.email, 'Емайл', {'label_attr': {'class': 'control-label'}}) }}
+    </div>
+    <div class="col-md-2">
+        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-1">
+        {{ form_label(form.username, 'Имя', {'label_attr': {'class': 'control-label'}}) }}
+    </div>
+    <div class="col-md-2">
+        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-1">
+        {{ form_label(form.plainPassword.first, 'Пароль', {'label_attr': {'class': 'control-label'}}) }}
+    </div>
+    <div class="col-md-2">
+        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-1">
+        {{ form_label(form.plainPassword.second, 'Подтверждение пароля', {'label_attr': {'class': 'control-label'}}) }}
+    </div>
+    <div class="col-md-2">
+        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-1">
+        {{ form_label(form.enabled, 'Включить', {'label_attr': {'class': 'control-label'}}) }}
+    </div>
+    <div class="col-md-1">
+        {{ form_widget(form.enabled, {'attr': {'class': 'form-control', 'style': 'width:20px;height: 20px;'}}) }}
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-1">
+        {{ form_label(form.admin, 'Роль Админ', {'label_attr': {'class': 'control-label'}}) }}
+    </div>
+    <div class="col-md-1">
+        {{ form_widget(form.admin, {'attr': {'class': 'form-control', 'style': 'width:20px;height: 20px;'}}) }}
+    </div>
+</div>
+<button class="btn btn-info" type="submit">Сохранить</button>
+{{ form_end(form) }}

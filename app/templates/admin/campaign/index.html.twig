@@ -1,0 +1,47 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Компании{% endblock %}
+
+{% block body %}
+    <h1>Компании</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Название</th>
+                <th>УНП</th>
+                <th>Адрес</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th>Дополнительная информация</th>
+                <th>Контактное лицо</th>
+                <th>Пользователь</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for campaign in campaigns %}
+            <tr>
+                <td>{{ campaign.id }}</td>
+                <td>{{ campaign.name }}</td>
+                <td>{{ campaign.ynp }}</td>
+                <td>{{ campaign.address }}</td>
+                <td>{{ campaign.phone }}</td>
+                <td>{{ campaign.email }}</td>
+                <td>{{ campaign.additionalInformation }}</td>
+                <td>{{ campaign.contactPerson }}</td>
+                <td>{{ campaign.user.userName }}</td>
+                <td class="float-left">
+                    <a class="btn btn-primary" href="{{ path('campaign_edit', {'id': campaign.id}) }}" style="float: left"><i class="fas fa-edit"></i></a>
+                    {% include 'admin/campaign/_delete_form.html.twig' %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Нет записей</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

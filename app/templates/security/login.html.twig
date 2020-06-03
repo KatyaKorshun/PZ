@@ -1,0 +1,28 @@
+{% extends 'security/base.html.twig' %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/signin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<form method="post" class="form-signin">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Вход</h1>
+    <label for="inputUsername" class="sr-only">Логин</label>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Логин" required autofocus>
+    <label for="inputPassword" class="sr-only">Пароль</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    <button class="btn btn-lg btn-primary" type="submit">Войти</button>
+    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-lg btn-dark" >Регистрация</a>
+</form>
+{% endblock %}

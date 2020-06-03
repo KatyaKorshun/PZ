@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./docker/nginx
+    depends_on:
+    - php7
+    - db
+    volumes:
+    - ./app:/var/www
+    ports:
+    - "80:80"
+
+  php7:
+    build: ./docker/php7
+    ports:
+    - "9000"
+    volumes:
+    - ./app:/var/www
+    working_dir: /var/www
+    environment:
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD:  ${DATABASE_PASSWORD}
+
+  db:
+    build: ./docker/mysql
+    ports:
+    - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD:  ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD:  ${DATABASE_PASSWORD}
+    volumes:
+    - ./docker/mysql/mysql-data:/var/lib/mysql
+    - ./docker/mysql/dumps:/docker-entrypoint-initdb.d
+    - ./docker/mysql/config/my.cnf:/etc/mysql/my.cnf

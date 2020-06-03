@@ -1,0 +1,61 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Список пользователей{% endblock %}
+
+{% block body %}
+    <br>
+    <a class="btn btn-primary" href="{{ path('user_new') }}">Создать пользователя</a>
+    <br><br>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    <br><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{{ knp_pagination_sortable(users, 'Имя', ['user.username']) }}</th>
+                <th>{{ knp_pagination_sortable(users, 'Емайл', ['user.email']) }}</th>
+                <th>{{ knp_pagination_sortable(users, 'Активность', ['user.enabled']) }}</th>
+                <th>Последний вход</th>
+                <th>Роли</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.enabled ? 'Да' : 'Нет' }}</td>
+                <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    {% set break = false %}
+                    {% for role in  user.getRoles if not break %}
+                        {% if role == "ROLE_ADMIN" %}
+                            Администратор
+                            {% set break = true %}
+                        {% elseif  role == "ROLE_USER" %}
+                            Пользователь
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('user_edit', {'id': user.id}) }}" style="float: left"><i class="fas fa-edit"></i></a>
+                    {% if user.id != userId %}
+                        {{ include('admin/user/_delete_form.html.twig') }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">Нет пользователей в таблице</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(users) }}
+    </div>
+{% endblock %}

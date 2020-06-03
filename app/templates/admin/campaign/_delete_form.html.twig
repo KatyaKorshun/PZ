@@ -1,0 +1,5 @@
+<form method="post" style="padding-left:5px;float: left" action="{{ path('campaign_delete', {'id': campaign.id}) }}" onsubmit="return confirm('Вы уверены что хотите удалить?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ campaign.id) }}">
+    <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+</form>
