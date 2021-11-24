@@ -64,7 +64,7 @@
         "symfony/routing": "4.4.4",
         "symfony/security": "4.4.4",
         "symfony/security-bundle": "4.4.*",
-        "symfony/serializer": "4.4.4",
+        "symfony/serializer": "4.4.35",
         "symfony/serializer-pack": "*",
         "symfony/service-contracts": "1.1.6",
         "symfony/stopwatch": "4.4.4",
