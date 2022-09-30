@@ -80,7 +80,7 @@
         "symfony/web-link": "4.4.4",
         "symfony/web-profiler-bundle": "4.4.4",
         "symfony/yaml": "4.4.4",
-        "twig/twig": "2.11.3"
+        "twig/twig": "2.15.3"
     },
     "require-dev": {
         "symfony/debug-bundle": "4.4.4",
